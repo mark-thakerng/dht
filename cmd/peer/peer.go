@@ -39,7 +39,7 @@ func main() {
 	port := flag.Int("port", 7654, "port to listen on")
 	peers := flag.String("peers", "", "peers to connect to")
 	rendezvous := flag.String("topic", "librum", "topic to subscribe/publish to")
-	mode := flag.String("mode", "sub", "subscribe or publish")
+	mode := flag.String("mode", "", "subscribe or publish")
 
 	help := flag.Bool("help", false, "display help")
 	flag.Parse()
@@ -92,6 +92,8 @@ func main() {
 		subscribe(subscriber, ctx, host.ID())
 	} else if *mode == "pub" {
 		publish(ctx, topic)
+	} else {
+		select {}
 	}
 }
 
