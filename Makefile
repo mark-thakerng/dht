@@ -14,3 +14,7 @@ subscriberd:
 .PHONY: publisherd
 publisherd:
 	go build -o build/publisherd ./cmd/bootstrap-publisher/bootstrap-publisher.go
+
+.PHONY: peer
+peer:
+	go build -o build/peer ./cmd/peer/peer.go
