@@ -56,7 +56,7 @@ func main() {
 	fmt.Printf("host ID %s\n", host.ID().Pretty())
 	fmt.Println("host address: ")
 	for _, addr := range host.Addrs() {
-		fmt.Println("\t", addr.String())
+		fmt.Println("\t", addr.String(), "/p2p/", host.ID().Pretty())
 	}
 	gossipSub, err := pubsub.NewGossipSub(ctx, host)
 	if err != nil {
