@@ -2,7 +2,6 @@ package internal
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"time"
 
@@ -38,7 +37,7 @@ func Discover(ctx context.Context, h host.Host, dht *dht.IpfsDHT, rendezvous str
 				}
 				if h.Network().Connectedness(p.ID) != network.Connected {
 					_, err = h.Network().DialPeer(ctx, p.ID)
-					fmt.Printf("Connected to peer %s\n", p.ID.Pretty())
+					// fmt.Printf("Connected to peer %s\n", p.ID.Pretty())
 					if err != nil {
 						continue
 					}

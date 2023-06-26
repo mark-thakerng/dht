@@ -28,7 +28,6 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
 	// view host details and addresses
 	fmt.Printf("host ID %s\n", host.ID().Pretty())
 	fmt.Printf("following are the assigned addresses\n")
@@ -43,17 +42,23 @@ func main() {
 		panic(err)
 	}
 
-	// ipfs address of discovery peers
+	// ipfs address of discovery/bootstrapping peers
 	// i have added one peer here, you could add multiple disovery peers
-	multiAddr, err := multiaddr.NewMultiaddr("/ip4/20.228.145.221/tcp/7654/p2p/QmPMFJUzfB1LrxksmpS75QNwtmN8TCEcMvSezL3V9hp8a4")
+	multiAddr1, err := multiaddr.NewMultiaddr("/ip4/206.189.46.63/tcp/7654/p2p/12D3KooWSj3sFMntJqdyGqv9725H4mXAdAceNr4QnpcV1GeeL1Bv")
 	if err != nil {
 		panic(err)
 	}
-	println(multiAddr)
+	println(multiAddr1)
+
+	multiAddr2, err := multiaddr.NewMultiaddr("/ip4/170.64.178.38/tcp/7654/p2p/12D3KooWKxLUBu6rQrYuBMo5SrpaREj5YMQYaxBLrXDkoBuphqD2")
+	if err != nil {
+		panic(err)
+	}
+	println(multiAddr2)
 
 	// setup DHT with discovery server
 	// this peer could run behind the nat(with private ip address)
-	discoveryPeers := []multiaddr.Multiaddr{multiAddr}
+	discoveryPeers := []multiaddr.Multiaddr{multiAddr1, multiAddr2}
 	dht, err := internal.NewDHT(ctx, host, discoveryPeers)
 	if err != nil {
 		panic(err)
